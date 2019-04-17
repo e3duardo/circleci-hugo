@@ -1,4 +1,7 @@
-FROM circleci/node
+FROM circleci/golang
 
-RUN sudo apt-get update && sudo apt-get install hugo
-RUN sudo npm install -g npm@latest
+WORKDIR /home/circleci
+RUN git clone https://github.com/gohugoio/hugo.git \
+	&& cd hugo \
+	&& go install --tags extended
+#RUN hugo version
